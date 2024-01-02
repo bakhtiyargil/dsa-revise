@@ -55,6 +55,33 @@ public class SinglyLinkedList<E> {
         return size == 0;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null)
+            return false;
+        if (getClass() != o.getClass())
+            return false;
+
+        // There is subtlety involving the treatment of Java’s generics framework.
+        // Although our SinglyLinkedList class has a declared formal type parameter <E>,
+        // we cannot detect at runtime whether the other list has a matching type.
+        // (For those interested, look online for a discussion of erasure in Java.)
+        // So we revert to using a more classic approach with nonparameterized type SinglyLinkedList.
+        SinglyLinkedList other = (SinglyLinkedList) o;
+        if (size != other.size)
+            return false;
+
+        Node walkA = head;
+        Node walkB = other.head;
+        while (walkA != null) {
+            if (!walkA.getElement().equals(walkB.getElement()))
+                return false;
+            walkA = walkA.getNext();
+            walkB = walkB.getNext();
+        }
+        return true;
+    }
+
     private static class Node<E> {
 
         private final E element;
