@@ -10,7 +10,8 @@ import java.util.Arrays;
 public class RecursionMain {
 
     public static void main(String[] args) {
-        powerOptimizedTesting();
+        //binarySumTesting();
+        //powerOptimizedTesting();
         //powerTesting();
         //reverseArrayTesting();
         //linearSumTesting();
@@ -38,6 +39,12 @@ public class RecursionMain {
     public static void linearSumTesting() {
         int[] data = {1, 1, 2, 3};
         var sum = RecursionImplUtility.linearSum(data, data.length);
+        System.out.println("Sum: " + sum);
+    }
+
+    public static void binarySumTesting() {
+        int[] data = {1, 1, 2, 3};
+        var sum = RecursionImplUtility.binarySum(data, 0, data.length - 1);
         System.out.println("Sum: " + sum);
     }
 
