@@ -9,7 +9,7 @@ public class SinglyLinkedList<E> implements Cloneable {
     public void addFirst(E element) {
         head = new Node<>(element, head);
         if (isEmpty())
-            head = tail;
+            tail = head;
         size++;
     }
 
