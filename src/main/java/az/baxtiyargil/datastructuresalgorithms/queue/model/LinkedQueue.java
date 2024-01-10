@@ -21,17 +21,17 @@ public class LinkedQueue<E> implements Queue<E> {
 
     @Override
     public void enqueue(E element) {
-
+        list.addLast(element);
     }
 
     @Override
     public E first() {
-        return null;
+        return list.first();
     }
 
     @Override
     public E dequeue() {
-        return null;
+        return list.removeFirst();
     }
 
 }
