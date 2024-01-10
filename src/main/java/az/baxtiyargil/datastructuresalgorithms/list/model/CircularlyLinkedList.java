@@ -28,6 +28,11 @@ public class CircularlyLinkedList<E> {
         return tail.getElement();
     }
 
+    public void rotate() {
+        if (tail != null)
+            tail = tail.getNext();
+    }
+
     public void addFirst(E element) {
         if (isEmpty()) {
             tail = new Node<>(element, null);
