@@ -1,9 +1,10 @@
 package az.baxtiyargil.datastructuresalgorithms.list.model;
 
+import az.baxtiyargil.datastructuresalgorithms.deque.model.Deque;
 import lombok.Getter;
 import lombok.Setter;
 
-public class DoublyLinkedList<E> {
+public class DoublyLinkedList<E> implements Deque<E> {
 
     private final Node<E> header;
     private final Node<E> trailer;
@@ -35,10 +36,12 @@ public class DoublyLinkedList<E> {
         return trailer.getPrev().getElement();
     }
 
+    @Override
     public void addFirst(E element) {
         addBetween(element, header, header.getNext());
     }
 
+    @Override
     public void addLast(E element) {
         addBetween(element, trailer.getPrev(), trailer);
     }
