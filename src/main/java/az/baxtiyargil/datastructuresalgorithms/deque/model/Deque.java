@@ -10,9 +10,9 @@ public interface Deque<E> {
 
     E last();
 
-    void addFirst();
+    void addFirst(E element);
 
-    void addLast();
+    void addLast(E element);
 
     E removeFirst();
 
