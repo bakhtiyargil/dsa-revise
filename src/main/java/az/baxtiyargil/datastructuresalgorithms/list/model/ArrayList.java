@@ -43,7 +43,7 @@ public class ArrayList<E> implements List<E> {
     public void add(int i, E element) throws IndexOutOfBoundsException {
         checkIndex(i, size);
         if (size == data.length)
-            throw new IllegalStateException("Array is full");
+            resize(2 * data.length);
         for (int k = i; k < size - 1; k++)
             data[k + 1] = data[k];
         data[i] = element;
@@ -64,6 +64,12 @@ public class ArrayList<E> implements List<E> {
     private void checkIndex(int i, int n) throws IndexOutOfBoundsException {
         if (i < 0 || i > n)
             throw new IndexOutOfBoundsException("Illegal index: " + i);
+    }
+
+    protected void resize(int capacity) {
+        E[] temp = (E[]) new Object[capacity];
+        if (size >= 0) System.arraycopy(data, 0, temp, 0, size);
+        data = temp;
     }
 
 }
