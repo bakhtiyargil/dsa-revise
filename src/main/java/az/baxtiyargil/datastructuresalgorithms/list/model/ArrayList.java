@@ -1,6 +1,9 @@
 package az.baxtiyargil.datastructuresalgorithms.list.model;
 
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 public class ArrayList<E> implements List<E> {
 
     public static final int CAPACITY = 16;
@@ -70,6 +73,39 @@ public class ArrayList<E> implements List<E> {
         E[] temp = (E[]) new Object[capacity];
         if (size >= 0) System.arraycopy(data, 0, temp, 0, size);
         data = temp;
+    }
+
+    private class ArrayIterator implements Iterator<E> {
+
+        private int j = 0;
+        private boolean removable = false;
+
+        @Override
+        public boolean hasNext() {
+            return j < size;
+        }
+
+        @Override
+        public E next() {
+            if (j == size)
+                throw new NoSuchElementException("No next element");
+            removable = true;
+            return data[j++];
+        }
+
+        @Override
+        public void remove() {
+            if (!removable)
+                throw new IllegalStateException("nothing to remove");
+            ArrayList.this.resize(j - 1);
+            j--;
+            removable = false;
+        }
+
+        public Iterator<E> iterator() {
+            return new ArrayIterator();
+        }
+
     }
 
 }
