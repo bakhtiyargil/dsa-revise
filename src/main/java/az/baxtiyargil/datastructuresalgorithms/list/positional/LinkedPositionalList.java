@@ -3,6 +3,8 @@ package az.baxtiyargil.datastructuresalgorithms.list.positional;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Iterator;
+
 public class LinkedPositionalList<E> implements PositionalList<E> {
 
     private Node<E> header;
@@ -124,6 +126,24 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
             return element;
         }
 
+    }
+
+    private class PositionIterator implements Iterator<Position<E>> {
+
+        @Override
+        public boolean hasNext() {
+            return false;
+        }
+
+        @Override
+        public Position<E> next() {
+            return null;
+        }
+
+        @Override
+        public void remove() {
+            Iterator.super.remove();
+        }
     }
 
 }
