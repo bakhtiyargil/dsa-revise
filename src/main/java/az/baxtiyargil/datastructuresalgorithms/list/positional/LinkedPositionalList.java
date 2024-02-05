@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class LinkedPositionalList<E> implements PositionalList<E> {
 
@@ -130,20 +131,31 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
 
     private class PositionIterator implements Iterator<Position<E>> {
 
+        private Position<E> cursor = first();
+        private Position<E> recent = null;
+
         @Override
         public boolean hasNext() {
-            return false;
+            return cursor != null;
         }
 
         @Override
         public Position<E> next() {
-            return null;
+            if (cursor == null)
+                throw new NoSuchElementException("nothing left");
+            recent = cursor;
+            cursor = after(cursor);
+            return recent;
         }
 
         @Override
         public void remove() {
-            Iterator.super.remove();
+            if (recent == null)
+                throw new IllegalStateException("nothing to remove");
+            LinkedPositionalList.this.remove(recent);
+            recent = null;
         }
+
     }
 
 }
