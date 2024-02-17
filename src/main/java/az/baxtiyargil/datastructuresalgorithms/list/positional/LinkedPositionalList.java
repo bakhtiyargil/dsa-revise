@@ -167,8 +167,29 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
 
     }
 
+    private class ElementIterator implements Iterator<E> {
+
+        Iterator<Position<E>> positionIterator = new PositionIterator();
+
+        public boolean hasNext() {
+            return positionIterator.hasNext();
+        }
+
+        public E next() {
+            return positionIterator.next().getElement();
+        }
+
+        public void remove() {
+            positionIterator.remove();
+        }
+    }
+
     public Iterable<Position<E>> positions() {
         return new PositionIterable();
+    }
+
+    public Iterator<E> iterator() {
+        return new ElementIterator();
     }
 
 }
