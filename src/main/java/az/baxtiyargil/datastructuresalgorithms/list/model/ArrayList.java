@@ -102,10 +102,10 @@ public class ArrayList<E> implements List<E> {
             removable = false;
         }
 
-        public Iterator<E> iterator() {
-            return new ArrayIterator();
-        }
+    }
 
+    public Iterator<E> iterator() {
+        return new ArrayIterator();
     }
 
 }
