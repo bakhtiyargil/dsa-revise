@@ -3,11 +3,14 @@ package az.baxtiyargil.datastructuresalgorithms.list;
 import az.baxtiyargil.datastructuresalgorithms.list.model.CircularlyLinkedList;
 import az.baxtiyargil.datastructuresalgorithms.list.model.DoublyLinkedList;
 import az.baxtiyargil.datastructuresalgorithms.list.model.SinglyLinkedList;
+import az.baxtiyargil.datastructuresalgorithms.list.positional.LinkedPositionalList;
+import az.baxtiyargil.datastructuresalgorithms.list.utility.Sorter;
 
 public class ListMain {
 
     public static void main(String[] args) {
-        testDoublyLinkedList();
+        testLinkedPositionalList();
+        //testDoublyLinkedList();
         //testCircularlyLinkedList();
         //testSinglyLinkedList();
     }
@@ -41,6 +44,17 @@ public class ListMain {
         var removedElement = list.removeFirst();
         System.out.println("Removed element: " + removedElement);
         System.out.println(list.first());
+    }
+
+    public static void testLinkedPositionalList() {
+        var list = new LinkedPositionalList<Integer>();
+        list.addFirst(1);
+        list.addFirst(2);
+        list.addFirst(3);
+        list.iterator().forEachRemaining(System.out::println);
+        Sorter.insertionSort(list);
+        System.out.println("--after sorting--");
+        list.iterator().forEachRemaining(System.out::println);
     }
 
 }
