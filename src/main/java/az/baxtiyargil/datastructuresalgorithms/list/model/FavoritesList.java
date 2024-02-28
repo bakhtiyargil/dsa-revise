@@ -49,4 +49,40 @@ public class FavoritesList<E> {
         return walk;
     }
 
+    protected void moveUp(Position<Item<E>> p) {
+        int cnt = count(p);
+        Position<Item<E>> walk = p;
+        while (walk != list.first() && count(list.before(walk)) < cnt) {
+            walk = list.before(walk);
+        }
+
+        if (walk != p) {
+            list.addBefore(walk, list.remove(p));
+        }
+    }
+
+    public int size() {
+        return list.size();
+    }
+
+    public boolean isEmpty() {
+        return list.isEmpty();
+    }
+
+    public void access(E e) {
+        Position<Item<E>> p = findPosition(e);
+        if (p == null) {
+            p = list.addLast(new Item<>(e));
+        }
+        p.getElement().increment();
+        moveUp(p);
+    }
+
+    public void remove(E e) {
+        Position<Item<E>> p = findPosition(e);
+        if (p != null) {
+            list.remove(p);
+        }
+    }
+
 }
