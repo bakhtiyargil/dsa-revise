@@ -4,6 +4,8 @@ import az.baxtiyargil.datastructuresalgorithms.list.positional.LinkedPositionalL
 import az.baxtiyargil.datastructuresalgorithms.list.positional.Position;
 import az.baxtiyargil.datastructuresalgorithms.list.positional.PositionalList;
 
+import java.util.Iterator;
+
 public class FavoritesList<E> {
 
     protected static class Item<E> {
@@ -28,7 +30,7 @@ public class FavoritesList<E> {
 
     }
 
-    PositionalList<Item<E>> list = new LinkedPositionalList<>();
+    LinkedPositionalList<Item<E>> list = new LinkedPositionalList<>();
 
     public FavoritesList() {
     }
@@ -83,6 +85,16 @@ public class FavoritesList<E> {
         if (p != null) {
             list.remove(p);
         }
+    }
+
+    public Iterable<E> getFavorites(int k) throws IllegalArgumentException {
+        if (k < 0 || k > size())
+            throw new IllegalArgumentException("Invalid k");
+        LinkedPositionalList<E> result = new LinkedPositionalList<>();
+        Iterator<Item<E>> iter = list.iterator();
+        for (int j = 0; j < k; j++)
+            result.addLast(iter.next().getValue());
+        return result;
     }
 
 }

@@ -6,7 +6,7 @@ import lombok.Setter;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedPositionalList<E> implements PositionalList<E> {
+public class LinkedPositionalList<E> implements PositionalList<E>, Iterable<E> {
 
     private Node<E> header;
     private Node<E> trailer;
