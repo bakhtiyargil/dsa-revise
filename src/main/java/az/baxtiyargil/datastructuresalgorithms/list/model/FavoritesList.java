@@ -2,7 +2,6 @@ package az.baxtiyargil.datastructuresalgorithms.list.model;
 
 import az.baxtiyargil.datastructuresalgorithms.list.positional.LinkedPositionalList;
 import az.baxtiyargil.datastructuresalgorithms.list.positional.Position;
-import az.baxtiyargil.datastructuresalgorithms.list.positional.PositionalList;
 
 import java.util.Iterator;
 
